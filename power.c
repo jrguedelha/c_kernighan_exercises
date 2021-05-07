@@ -1,6 +1,6 @@
 #include<stdio.h>
 /* Calcules power */
-
+int power(int m, int n);
 void main()
 {
 	printf("%d\n",power(6,2));
