@@ -7,28 +7,40 @@ void revert_line(char line[], int length);
 
 int main()
 {
-
+	int length;
+	char line[MAX];
+	
+	length = 0;
+	while((length = get_line(line, MAX)) > 0)
+	{
+		revert_line(line, length);
+		printf("Reverted: %s\n", line);
+	}
 	return (0);
 }
 
 int get_line(char s[], int max)
 {
 	int i;
-	char c;
+	char ch;
 
 	i = 0;
-	while((i < max-1) && ((c = getchar()) != EOF) && (c != '\n'))
+	while((i < max-1) && ((ch = getchar()) != EOF) && (ch != '\n'))
 	{
-		s[i] = c;
+		s[i] = ch;
 		++i;
 	}
-	if(c == '\n')
+	if(ch == '\n')
 	{
-		s[i] = c;
+		s[i] = ch;
 		++i;
+	}
+	else
+	{
+		printf("\n");
 	}
 	s[i] = '\0';
-	return i;
+	return (i);
 }
 
 void revert_line(char s[], int length)
@@ -45,6 +57,7 @@ void revert_line(char s[], int length)
 		{
 			++j;
 		}
+		++i;
 	}
 	length = length - j;
 	i = 0;
@@ -52,7 +65,7 @@ void revert_line(char s[], int length)
 	{
 		temp = s[i];
 		s[i] = s[length-1-i];
-		s[length-1-1] = temp;
+		s[length-1-i] = temp;
 		++i;
 	}
 	if(j > 1)
