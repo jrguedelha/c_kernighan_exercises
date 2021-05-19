@@ -14,7 +14,7 @@ int main()
 	length = 0;
 	while((length = get_line(line,MAX_LENGTH)) > 0)
 	{
-		printf("Input line: \t%s\n",line);
+		printf("Input line: \t%s(%d)\n",line,length);
 		replace_tabs(line,length);
 		printf("Replaced line: \t%s",line);
 	}
@@ -73,12 +73,13 @@ void replace_tabs(char line[], int length)
 				if((i + j) == '\0') && ((i + j) < MAX_LENGTH))
 				{
 					max = (i + j);
-				}	
+				}
+				++j;	
 			}
 			j = 0;
 			while(j < max)
 			{
-				
+				++j;
 			}
 			i = i + TAB;
 			*/
@@ -92,9 +93,8 @@ void replace_tabs(char line[], int length)
 		++i;
 	}
 	i = 0;
-	while(i < j)
+	while((line[i] = rt[i]) != '\0');
 	{
-		line[i] = rt[i];
 		++i;
 	}
 }
