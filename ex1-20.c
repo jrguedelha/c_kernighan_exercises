@@ -1,7 +1,7 @@
 /*replace tabs for blank spaces*/
 #include<stdio.h>
-#define MAX_LENGTH 100
-#define TAB 4
+#define MAX_LENGTH 250
+#define TAB 6
 
 int get_line(char line[],int max);
 void replace_tabs(char line[],int length);
@@ -14,9 +14,9 @@ int main()
 	length = 0;
 	while((length = get_line(line,MAX_LENGTH)) > 0)
 	{
-		printf("Input line: \t%s(%d)\n",line,length);
+		printf("Line in: %s",line);
 		replace_tabs(line,length);
-		printf("Replaced line: \t%s",line);
+		printf("Line re: %s\n",line);
 	}
 	return (0);
 }
@@ -49,41 +49,22 @@ void replace_tabs(char line[], int length)
 {
 	int i;
 	int j;
-	//int max;
+	int jump;
 	char rt[MAX_LENGTH];
 
 	i = 0;
 	j = 0;
-	//max = 0;
-	while(i < length-1)
+	jump = 0;
+	while(i < length)
 	{
 		if(line[i] == '\t')
 		{
-			while(j < j+TAB)
+			jump = j + TAB;
+			while(j < jump)
 			{
 				rt[j] = ' ';
 				++j;
 			}
-			
-			/*
-			j = 1;
-			max = i + TAB;
-			while(j < TAB)
-			{
-				if((i + j) == '\0') && ((i + j) < MAX_LENGTH))
-				{
-					max = (i + j);
-				}
-				++j;	
-			}
-			j = 0;
-			while(j < max)
-			{
-				++j;
-			}
-			i = i + TAB;
-			*/
-		
 		}
 		else
 		{
@@ -92,8 +73,9 @@ void replace_tabs(char line[], int length)
 		}
 		++i;
 	}
+	rt[j] = '\0';
 	i = 0;
-	while((line[i] = rt[i]) != '\0');
+	while((line[i] = rt[i]) != '\0')
 	{
 		++i;
 	}
